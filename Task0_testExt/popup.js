@@ -27,11 +27,27 @@ function updateUrls() // function that gets the data from the Local Storage
 function OutTable(table, data) // Table output function
 {
     out.innerText = ''
-    
+
     // Clean the table up!
     while (table.childNodes.length) {
         table.removeChild(table.childNodes[0]);
     }
+
+    function wrapWord(word)  /// add \n to the long strings each 100 symbols
+    {
+        // insert SubString into String by index
+        let insertAtIndex = (str, substring, index) => str.slice(0, index) + substring + str.slice(index);
+       
+        const amt = 50  // number of characters limit for each string
+
+        var count = Math.floor(word.length / amt)  // Amount of changes       
+        if (count > 0)
+            for (let i = count; i > 0; i--)
+                word = insertAtIndex(word, "\r\n", i*amt) // Add a newstring stop-letter
+
+        return word;
+    }
+
 
     // Loop for the table elements
     for (let element of data) {
@@ -39,6 +55,7 @@ function OutTable(table, data) // Table output function
         for (key in element) {
             let cell = row.insertCell();
             let text = document.createTextNode(element[key]);
+            text.nodeValue = wrapWord(text.nodeValue)
             cell.appendChild(text);
         }
     }
@@ -50,7 +67,7 @@ function GetTable()  // The main function
    updateUrls();
 
    // If the data is ok, return it into the table
-   if (urls.length > 0) 
+   if (urls.length > 1) 
         OutTable(table, urls); 
 }
 
@@ -58,6 +75,10 @@ function GetTable()  // The main function
 let tableProc = setInterval(GetTable, interval);
 
 // Clear the storage
-btn.addEventListener('click', () => { localStorage.removeItem('my_urls');
-                                      localStorage.removeItem('my_freq'); urls = [];
+btn.addEventListener('click', () => { 
+                                      localStorage.removeItem('my_urls');
+                                      localStorage.removeItem('my_freq'); 
+                                      urls = [];
+                                      OutTable(table, urls); 
+                                    //  GetTable();
                                     })

@@ -50,11 +50,20 @@ function UpdateData()  // function that updates the time spent on each of the ur
                 break
             }   
         }
-        if (!broken) urls.push([url,0])
+        if (!broken) urls.push([url, 0])
     });
 
     UploadUrls()
 }
 
+function ClearData() // function that clears LocalStorage arrays
+{
+    localStorage.removeItem('my_urls');
+    localStorage.removeItem('my_freq'); 
+    urls = []
+}
+
+// initialize
+// ClearData() 
 // set the data being updated with the certain interval
-let mainProc = setInterval( UpdateData, interval);
+let mainProc = setInterval(UpdateData, interval);
