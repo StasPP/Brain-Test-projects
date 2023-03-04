@@ -48,7 +48,6 @@ function OutTable(table, data) // Table output function
         return word;
     }
 
-
     // Loop for the table elements
     for (let element of data) {
         let row = table.insertRow();

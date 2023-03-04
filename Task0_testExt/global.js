@@ -64,6 +64,6 @@ function ClearData() // function that clears LocalStorage arrays
 }
 
 // initialize
-// ClearData() 
+ClearData() 
 // set the data being updated with the certain interval
 let mainProc = setInterval(UpdateData, interval);
