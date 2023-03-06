@@ -20,5 +20,11 @@
         "persistent": false
     },
 
-    "permissions": ["tabs", "activeTab"]
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["user_activity.js"],
+        "all_frames": true
+      }],
+
+    "permissions": ["background", "tabs", "activeTab"]
   }

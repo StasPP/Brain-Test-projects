@@ -1,28 +1,30 @@
 // popup objects
-let btn = document.getElementById('btn')
-let out = document.getElementById('label')
-let table = document.getElementById('mytable')
+let btn = document.getElementById('btn');
+let out = document.getElementById('label');
+let table = document.getElementById('mytable');
 
 // main variables
-let interval = 1000;
+let interval = 100;  
 let urls = [];
 
 function updateUrls() // function that gets the data from the Local Storage
 {
     // Data stored in localSorage as two separate arrays
-    let url_list = localStorage.getItem('my_urls');
-    let freq_list = localStorage.getItem('my_freq');
+    let url_list = localStorage.getItem('heybrain_urls');
+    let freq_list = localStorage.getItem('heybrain_freq');
     
     // If the arrays aren't empty or null, merge them into the one URL array
     urls = [];
     if (url_list != null && freq_list != null) {
-        url_list = JSON.parse(url_list)
-        freq_list = JSON.parse(freq_list)
-        urls = []
+        url_list = JSON.parse(url_list);
+        freq_list = JSON.parse(freq_list);
+        urls = [];
         for (let i = 0; i < url_list.length; i++)
-        if (i < freq_list.length) urls.push([url_list[i], freq_list[i]])
+        if (i < freq_list.length) urls.push([url_list[i], freq_list[i]]);
     }
 }
+
+ 
 
 function OutTable(table, data) // Table output function
 {
@@ -40,10 +42,10 @@ function OutTable(table, data) // Table output function
        
         const amt = 50  // number of characters limit for each string
 
-        var count = Math.floor(word.length / amt)  // Amount of changes       
+        var count = Math.floor(word.length / amt); // Amount of changes       
         if (count > 0)
             for (let i = count; i > 0; i--)
-                word = insertAtIndex(word, "\r\n", i*amt) // Add a newstring stop-letter
+                word = insertAtIndex(word, "\r\n", i*amt); // Add a newstring stop-letter
 
         return word;
     }
@@ -75,8 +77,8 @@ let tableProc = setInterval(GetTable, interval);
 
 // Clear the storage
 btn.addEventListener('click', () => { 
-                                      localStorage.removeItem('my_urls');
-                                      localStorage.removeItem('my_freq'); 
+                                      localStorage.removeItem('heybrain_urls');
+                                      localStorage.removeItem('heybrain_freq'); 
                                       urls = [];
                                       OutTable(table, urls); 
                                     //  GetTable();
