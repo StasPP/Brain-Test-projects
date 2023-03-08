@@ -16,7 +16,7 @@ function addItemToBlackList()
             outputBlackList();
            
             for (let i = 0; i < listbox.options.length; i++)
-                listbox.options[i].selected = i != listbox.options.length-1;
+                listbox.options[i].selected = i === listbox.options.length-1;
 
 
         }
