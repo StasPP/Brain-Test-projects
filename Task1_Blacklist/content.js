@@ -8,7 +8,7 @@ let isInBlacklist =  new Promise((resolve)  =>
 
 // Call for the asynchronous function's result
 isInBlacklist.then((data) => {
-    data
+    data === true
         ? console.log('the page '+location+' is in the blacklist')
         : console.log('the page '+location+' is NOT in the blacklist')
 });   

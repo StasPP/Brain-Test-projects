@@ -1,6 +1,6 @@
 /// Variables for the main loop
 
-let interval = 1000;  // ToDo:  return back! 10000
+let interval = 10000;  // 10s
 let lastupdate = 0;
 let currentUrl = '';
 let urls = [];
@@ -89,7 +89,8 @@ function updateData()  // function that updates the time spent on each of the ur
 
         // 1. Update the variables
         let dT = dTime();
-        let newUrl = isUserActive? tabs[0].url : ':inactive:'; /// ToDo: make it '' if inactive!
+        // let newUrl = isUserActive? tabs[0].url : ':inactive:'; /// for TEST!
+        let newUrl = isUserActive? tabs[0].url : ''; 
 
         // 2. Exit if nothing has changed
         if (dT === 0 && currentUrl === newUrl) return 0;   /// ToDo: add inactive!
@@ -106,7 +107,7 @@ function updateData()  // function that updates the time spent on each of the ur
 
         // 5. Update the storage
         uploadUrls();
-        waitForUser();
+        waitForUser(); 
     });
 
 }
@@ -126,27 +127,14 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 // Send a message to user_activity module, that means we're waiting for a messages
 function waitForUser() 
 {
-
-    // ToDo: make it works!
-
-
     isUserActive = false; 
 
-    // chrome.tabs.query({active: true}, function(tabs){
-    //     chrome.tabs.sendMessage(chrome.tabs[0].id, "heybrain_waiting"); 
-    // })
+    chrome.tabs.query({active: true, lastFocusedWindow: true}, function(tabs){
+        console.log(tabs[0])
+        console.log(tabs[0].id)
+        chrome.tabs.sendMessage(tabs[0].id, {message: "heybrain_waiting"}); 
+    })
 
-    // function doInCurrentTab(tabCallback) {
-    //     chrome.tabs.query(
-    //         { currentWindow: true, active: true },
-    //         function (tabArray) { tabCallback(tabArray[0]); }
-    //     );
-    // }
-
-    // let activeTabId;
-    // doInCurrentTab( function(tab){ activeTabId = tab.id } );
-
-    // console.log("Waiting for user "+activeTabId  )
 }
 
 // ----------------------------------------------------------------
@@ -164,7 +152,7 @@ function initialize() // full initialization function
     console.log('Initializing...')
 
     // clear local storage and initialize the last update time
-    //ClearData();
+    // ClearData();
     urls = [];
     lastupdate = Date.now();
 

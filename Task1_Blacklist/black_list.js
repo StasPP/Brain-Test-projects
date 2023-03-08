@@ -7,20 +7,20 @@ let isInBlacklist = (page) =>
     page = page[page.length-1] === '/' ? page : page + '/';
 
     let result = black_list.includes(page)  /// 1) strict coinsedence
-    if (!result) 
-    {
-        // deep equality analysis (ToDo add more!!!)
-        page = page.replace('http://', '').replace('https://', '');
-        page = page.toLowerCase()
-        for (let i = 0; i < black_list.length; i++) 
-        { 
-            black_page = black_list[i];
-            black_page = black_page.replace('http://', '').replace('https://', '');
-            black_page = black_page.toLowerCase();
-            result = black_page === page;
-            if (result) break;
-        } 
-    }
+    // if (!result) 
+    // {
+    //     // deep equality analysis (ToDo add more!!!)
+    //     page = page.replace('http://', '').replace('https://', '');
+    //     page = page.toLowerCase()
+    //     for (let i = 0; i < black_list.length; i++) 
+    //     { 
+    //         black_page = black_list[i];
+    //         black_page = black_page.replace('http://', '').replace('https://', '');
+    //         black_page = black_page.toLowerCase();
+    //         result = black_page === page;
+    //         if (result) break;
+    //     } 
+    // }
     return result
 }
 
