@@ -41,6 +41,7 @@
             border-right-style: none;
             border-left-style: none;
             color: #fff;
+            padding: 5px; 
             font-size: 14px;
         }
 
@@ -51,21 +52,21 @@
 
         .hidden { display: none }
         
-        #btnRemove {
+        #btnRemove, #btnCancel {
             background: #790000;
             border-bottom: 2px solid #790000;
         }
         
-        #btnAdd {
+        #btnAdd, #btnDom, #btnUrl {
             background: #005304;
             border-bottom: 2px solid #005304;
         }
-        #btnRemove :hover {
+        #btnRemove :hover, #btnCancel :hover {
             background: #ff0000;
             border-bottom: 2px solid #ff0000;
         }
         
-        #btnAdd :hover{
+        #btnAdd :hover, #btnUrl :hover, #btnDom :hover{
             background: #00c70a;
             border-bottom: 2px solid #00c70a;
         }
@@ -110,6 +111,13 @@
             <label for="add-url">Url to add:</label>
             <input type="text" id="add-url" placeholder="Enter URL" autocomplete="off">
             <button id="btnAdd">Add</button>
+        </div>
+        <div id="confirm">
+            <br>
+            <p id= "out"></p>
+            <button id="btnUrl">Add the direct page</button>
+            <button id="btnDom">Add all the domain</button>
+            <button id="btnCancel">Cancel</button>
         </div>
     </form>
 
