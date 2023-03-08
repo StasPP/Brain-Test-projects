@@ -13,19 +13,106 @@
             text-align: center;
         }
 
-        table {width: 100%}
-        table, td {
-            border-collapse: collapse;
-            border: 1px solid rgb(124, 124, 124);
-            /* word-wrap: break-word; */
+        form {
+            max-width: 450px;
+            margin: 10px auto;
+            padding: 16px;
+        }
+
+        label,
+        select {
+            display: block;
+            margin: 10px 0;
+        }
+
+        select {
+            width: 100%;
+            font-size: 1em;
+            padding: 5px;
+        }
+
+        button {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 3%;
+            background: #007bff;
+            border-bottom: 2px solid #007bff;
+            border-top-style: none;
+            border-right-style: none;
+            border-left-style: none;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #0069d9;
+            cursor: pointer;
+        }
+
+        .hidden { display: none }
+        
+        #btnRemove {
+            background: #790000;
+            border-bottom: 2px solid #790000;
+        }
+        
+        #btnAdd {
+            background: #005304;
+            border-bottom: 2px solid #005304;
+        }
+        #btnRemove :hover {
+            background: #ff0000;
+            border-bottom: 2px solid #ff0000;
+        }
+        
+        #btnAdd :hover{
+            background: #00c70a;
+            border-bottom: 2px solid #00c70a;
+        }
+        
+        form input[type='text'] {
+            outline: none;
+            box-sizing: border-box;
+            width: 100%;
+            background: #fff;
+            margin-bottom: 2%;
+            border: 1px solid #ccc;
+            padding: 3%;
+            color: #555;
+            font-size: 1em;
+        }
+
+        form input[type='text']:focus {
+            box-shadow: 0 0 5px #f0db4f;
+            padding: 3%;
+            border: 1px solid #f0db4f;
         }
     </style>
+
+
+    <script type="text/javascript" src="black_list.js"></script>
 </head>
 <body>
-    <h1>URL Monitor</h1>
-    <p id="label">Please wait...</p>
-    <table id="mytable"></table>
-    <button id="btn">Refresh</button>
+
+    <h1>BlackList detector</h1>
+
+    <form>
+        <label for="list">Black List:</label>
+        <select id="list" name="list" multiple>
+
+        </select>
+         
+        <button id="btnEdit">Edit the list</button>
+
+        <div id="edit">
+            <button id="btnRemove">Remove Selected item</button>
+            <br>
+            <label for="add-url">Url to add:</label>
+            <input type="text" id="add-url" placeholder="Enter URL" autocomplete="off">
+            <button id="btnAdd">Add</button>
+        </div>
+    </form>
+
 
     <script type="text/javascript" src="popup.js"></script>
 </body>

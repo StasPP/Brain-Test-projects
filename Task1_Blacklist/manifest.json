@@ -1,28 +1,28 @@
 {
     "manifest_version": 2,
-    "name": "TEST Extension_1",
+    "name": "TE: BlackList",
     "version": "0.1",
 
-    "description": "Test extension",
+    "description": "Test extension to test a blacklist of URLs + Manager",
     "icons": {
-        "16": "/images/icon16.png",
-        "48": "/images/icon48.png",
-        "128": "/images/icon128.png"
+        "16": "/images/icon16_2.png",
+        "48": "/images/icon48_2.png",
+        "128": "/images/icon128_2.png"
     },
     "browser_action": {
-        "default_icon": "/images/icon48.png",
+        "default_icon": "/images/icon48_2.png",
         "default_popup": "/popup.html",
-        "default_title": "TEST Extension"
+        "default_title": "TEST BlackList"
     },
 
     "background": {
-        "scripts": ["global.js"],
+        "scripts": ["black_list.js", "background.js"],
         "persistent": false
     },
 
     "content_scripts": [{
         "matches": ["<all_urls>"],
-        "js": ["user_activity.js"],
+        "js": ["content.js"],
         "all_frames": true
       }],
 
